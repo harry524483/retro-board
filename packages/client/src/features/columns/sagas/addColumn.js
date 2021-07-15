@@ -1,13 +1,13 @@
 import { take, select } from 'redux-saga/effects';
+import { actionTypes } from '@retro-board/common';
 
-import { ADD_COLUMN } from '../../../common/actions';
 import { colors } from '../../../common/constants';
 import { selectBoardId } from '../../board/boardSlice';
 import { selectTotalColumns } from '../columnsSlice';
 
 function* addColumn(socket) {
   while (true) {
-    const { payload: name } = yield take(ADD_COLUMN);
+    const { payload: name } = yield take(actionTypes.ADD_COLUMN);
 
     const boardId = yield select(selectBoardId);
 
@@ -16,7 +16,7 @@ function* addColumn(socket) {
 
     const column = { name, color, cards: [] };
 
-    socket.emit(ADD_COLUMN, boardId, column);
+    socket.emit(actionTypes.ADD_COLUMN, boardId, column);
   }
 }
 

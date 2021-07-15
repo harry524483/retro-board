@@ -1,15 +1,15 @@
 import { select, take } from 'redux-saga/effects';
+import { actionTypes } from '@retro-board/common';
 
-import { DELETE_COLUMN } from '../../../common/actions';
 import { selectBoardId } from '../../board/boardSlice';
 
 function* deleteColumn(socket) {
   while (true) {
-    const { payload: columnId } = yield take(DELETE_COLUMN);
+    const { payload: columnId } = yield take(actionTypes.DELETE_COLUMN);
 
     const boardId = yield select(selectBoardId);
 
-    socket.emit(DELETE_COLUMN, boardId, columnId);
+    socket.emit(actionTypes.DELETE_COLUMN, boardId, columnId);
   }
 }
 

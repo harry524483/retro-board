@@ -1,17 +1,17 @@
 import { select, take } from 'redux-saga/effects';
+import { actionTypes } from '@retro-board/common';
 
-import { UPDATE_COLUMN_NAME } from '../../../common/actions';
 import { selectBoardId } from '../../board/boardSlice';
 
 function* updateColumnName(socket) {
   while (true) {
     const {
       payload: { columnId, name }
-    } = yield take(UPDATE_COLUMN_NAME);
+    } = yield take(actionTypes.UPDATE_COLUMN_NAME);
 
     const boardId = yield select(selectBoardId);
 
-    socket.emit(UPDATE_COLUMN_NAME, boardId, { columnId, name });
+    socket.emit(actionTypes.UPDATE_COLUMN_NAME, boardId, { columnId, name });
   }
 }
 
