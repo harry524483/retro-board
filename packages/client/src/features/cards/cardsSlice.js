@@ -21,6 +21,11 @@ const cardsSlice = createSlice({
     }
   },
   extraReducers: {
+    [actionTypes.BOARD_CREATED]: (state, { payload }) => {
+      if (payload.entities.cards) {
+        cardsAdapter.upsertMany(state, payload.entities.cards);
+      }
+    },
     [actionTypes.CARD_ADDED]: (state, { payload }) => {
       const { cardId } = payload;
       cardsAdapter.addOne(state, { id: cardId, value: '', votes: 0 });
