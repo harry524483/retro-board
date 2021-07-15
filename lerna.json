@@ -4,7 +4,13 @@
   "useWorkspaces": true,
   "version": "independent",
   "command": {
-    "publish": { "conventionalCommits": true },
-    "version": { "push": false }
+    "publish": {
+      "conventionalCommits": true
+    },
+    "version": {
+      "push": false,
+      "allowBranch": ["master", "main", "feature/*"],
+      "message": "chore(release): publish"
+    }
   }
 }
