@@ -1,10 +1,10 @@
 {
   "name": "@retro-board/client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
-    "@retro-board/common": "^0.1.0",
+    "@retro-board/common": "^0.1.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
