@@ -2,32 +2,14 @@ import express from 'express';
 import { Server } from 'socket.io';
 import { instrument } from '@socket.io/admin-ui';
 import mongoose from 'mongoose';
+import { constants, actionTypes } from '@retro-board/common';
 
 import Board from './models/Board';
-import {
-  PORT,
-  CREATE_BOARD,
-  BOARD_CREATED,
-  ADD_COLUMN,
-  COLUMN_ADDED,
-  DELETE_COLUMN,
-  COLUMN_DELETED,
-  UPDATE_COLUMN_NAME,
-  COLUMN_NAME_UPDATED,
-  ADD_CARD,
-  CARD_ADDED,
-  CARD_CLOSED,
-  CLOSE_CARD,
-  CREATE_CARD,
-  CARD_CREATED,
-  DELETE_CARD,
-  CARD_DELETED
-} from './constants';
 
 const app = express();
 
-const server = app.listen(PORT, () => {
-  console.log(`🚀  Server ready at ${PORT}`);
+const server = app.listen(constants.PORT, () => {
+  console.log(`🚀  Server ready at ${constants.PORT}`);
   mongoose
     .connect(`mongodb://localhost:27017/retro-board`, {
       useNewUrlParser: true,
@@ -54,18 +36,18 @@ io.on('connection', (socket) => {
 
     const board = await Board.findById(boardId);
 
-    io.in(boardId).emit(BOARD_CREATED, board);
+    io.in(boardId).emit(actionTypes.BOARD_CREATED, board);
   });
 
-  socket.on(CREATE_BOARD, async (board) => {
+  socket.on(actionTypes.CREATE_BOARD, async (board) => {
     const BoardModel = new Board(board);
 
     const newBoard = await BoardModel.save();
 
-    socket.emit(BOARD_CREATED, newBoard);
+    socket.emit(actionTypes.BOARD_CREATED, newBoard);
   });
 
-  socket.on(ADD_COLUMN, async (boardId, column) => {
+  socket.on(actionTypes.ADD_COLUMN, async (boardId, column) => {
     const columnId = mongoose.Types.ObjectId();
 
     const result = await Board.findByIdAndUpdate(
@@ -76,32 +58,35 @@ io.on('connection', (socket) => {
 
     const newColumn = result.columns.id(columnId);
 
-    io.in(boardId).emit(COLUMN_ADDED, newColumn);
+    io.in(boardId).emit(actionTypes.COLUMN_ADDED, newColumn);
   });
 
-  socket.on(DELETE_COLUMN, async (boardId, columnId) => {
+  socket.on(actionTypes.DELETE_COLUMN, async (boardId, columnId) => {
     const board = await Board.findById(boardId);
 
     board.columns.id(columnId).remove();
 
     await board.save();
 
-    io.in(boardId).emit(COLUMN_DELETED, columnId);
+    io.in(boardId).emit(actionTypes.COLUMN_DELETED, columnId);
   });
 
-  socket.on(UPDATE_COLUMN_NAME, async (boardId, { columnId, name }) => {
-    const board = await Board.findById(boardId);
+  socket.on(
+    actionTypes.UPDATE_COLUMN_NAME,
+    async (boardId, { columnId, name }) => {
+      const board = await Board.findById(boardId);
 
-    const column = board.columns.id(columnId);
+      const column = board.columns.id(columnId);
 
-    column.name = name;
+      column.name = name;
 
-    await board.save();
+      await board.save();
 
-    io.in(boardId).emit(COLUMN_NAME_UPDATED, { columnId, name });
-  });
+      io.in(boardId).emit(actionTypes.COLUMN_NAME_UPDATED, { columnId, name });
+    }
+  );
 
-  socket.on(ADD_CARD, async (boardId, columnId) => {
+  socket.on(actionTypes.ADD_CARD, async (boardId, columnId) => {
     const cardId = mongoose.Types.ObjectId();
 
     const board = await Board.findById(boardId);
@@ -112,40 +97,54 @@ io.on('connection', (socket) => {
 
     await board.save();
 
-    io.in(boardId).emit(CARD_ADDED, { columnId, cardId });
+    io.in(boardId).emit(actionTypes.CARD_ADDED, { columnId, cardId });
   });
 
-  socket.on(CLOSE_CARD, async (boardId, { columnId, cardId }) => {
+  socket.on(actionTypes.CLOSE_CARD, async (boardId, { columnId, cardId }) => {
     const board = await Board.findById(boardId);
 
     board.columns.id(columnId).cards.id(cardId).remove();
 
     await board.save();
 
-    io.in(boardId).emit(CARD_CLOSED, { columnId, cardId });
+    io.in(boardId).emit(actionTypes.CARD_CLOSED, { columnId, cardId });
   });
 
-  socket.on(CREATE_CARD, async (boardId, { columnId, cardId, value }) => {
-    const board = await Board.findById(boardId);
+  socket.on(
+    actionTypes.CREATE_CARD,
+    async (boardId, { columnId, cardId, value }) => {
+      const board = await Board.findById(boardId);
 
-    const card = board.columns.id(columnId).cards.id(cardId);
+      const card = board.columns.id(columnId).cards.id(cardId);
 
-    card.value = value;
+      card.value = value;
 
-    await board.save();
+      await board.save();
 
-    io.in(boardId).emit(CARD_CREATED, { columnId, cardId, value });
-  });
+      io.in(boardId).emit(actionTypes.CARD_CREATED, {
+        columnId,
+        cardId,
+        value
+      });
+    }
+  );
 
-  socket.on(DELETE_CARD, async (boardId, { columnId, cardId, votes }) => {
-    const board = await Board.findById(boardId);
+  socket.on(
+    actionTypes.DELETE_CARD,
+    async (boardId, { columnId, cardId, votes }) => {
+      const board = await Board.findById(boardId);
 
-    board.columns.id(columnId).cards.id(cardId).remove();
+      board.columns.id(columnId).cards.id(cardId).remove();
 
-    await board.save();
+      await board.save();
 
-    io.in(boardId).emit(CARD_DELETED, { columnId, cardId, votes });
-  });
+      io.in(boardId).emit(actionTypes.CARD_DELETED, {
+        columnId,
+        cardId,
+        votes
+      });
+    }
+  );
 });
 
 instrument(io, { auth: false });

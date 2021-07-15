@@ -1,0 +1,12 @@
+{
+  "name": "@retro-board/common",
+  "version": "0.0.0",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "precompile": "rm -rf build tsconfig.tsbuildinfo",
+    "compile": "tsc --build",
+    "build": "yarn compile"
+  }
+}

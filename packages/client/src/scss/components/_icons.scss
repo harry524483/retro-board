@@ -1,0 +1,21 @@
+.check-icon {
+  color: #3b5998;
+}
+
+.close-icon {
+  right: 1.5rem;
+}
+
+.check-icon,
+.close-icon {
+  font-size: 1.3rem !important;
+}
+
+.move-icon {
+  cursor: grab;
+}
+
+.edit-icon,
+.trash-icon {
+  cursor: pointer;
+}

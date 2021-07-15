@@ -1,11 +1,11 @@
 {
   "name": "@retro-board/server",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "app.ts",
   "license": "MIT",
   "scripts": {
-    "precompile": "rm -rf build",
-    "compile": "tsc",
+    "precompile": "rm -rf build tsconfig.tsbuildinfo",
+    "compile": "tsc --build",
     "build": "yarn compile && node build/app.js",
     "start": "nodemon --config nodemon.json src/app.ts"
   },
@@ -14,6 +14,7 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "@retro-board/common": "^0.0.1",
     "@socket.io/admin-ui": "^0.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.14",
