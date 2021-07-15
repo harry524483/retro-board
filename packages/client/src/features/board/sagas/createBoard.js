@@ -1,12 +1,11 @@
 import { take } from 'redux-saga/effects';
-
-import { CREATE_BOARD } from '../../../common/actions';
+import { actionTypes } from '@retro-board/common';
 
 function* createBoard(socket) {
   while (true) {
-    const { payload: board } = yield take(CREATE_BOARD);
+    const { payload: board } = yield take(actionTypes.CREATE_BOARD);
 
-    socket.emit(CREATE_BOARD, board);
+    socket.emit(actionTypes.CREATE_BOARD, board);
   }
 }
 

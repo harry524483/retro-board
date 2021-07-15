@@ -1,14 +1,6 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import { actionTypes } from '@retro-board/common';
 
-import {
-  BOARD_CREATED,
-  CARD_ADDED,
-  CARD_CLOSED,
-  CARD_DELETED,
-  COLUMN_ADDED,
-  COLUMN_DELETED,
-  COLUMN_NAME_UPDATED
-} from '../../common/actions';
 import reorder from '../board/helpers/reorder';
 
 export const columnsAdapter = createEntityAdapter();
@@ -35,33 +27,33 @@ const columnsSlice = createSlice({
     }
   },
   extraReducers: {
-    [BOARD_CREATED]: (state, { payload }) => {
+    [actionTypes.BOARD_CREATED]: (state, { payload }) => {
       columnsAdapter.upsertMany(state, payload.entities.columns);
     },
-    [COLUMN_ADDED]: (state, { payload: column }) => {
+    [actionTypes.COLUMN_ADDED]: (state, { payload: column }) => {
       columnsAdapter.addOne(state, column);
     },
-    [COLUMN_DELETED]: (state, { payload: columnId }) => {
+    [actionTypes.COLUMN_DELETED]: (state, { payload: columnId }) => {
       columnsAdapter.removeOne(state, columnId);
     },
-    [COLUMN_NAME_UPDATED]: (state, { payload }) => {
+    [actionTypes.COLUMN_NAME_UPDATED]: (state, { payload }) => {
       const { columnId, name } = payload;
 
       columnsAdapter.updateOne(state, { id: columnId, changes: { name } });
     },
-    [CARD_ADDED]: (state, { payload }) => {
+    [actionTypes.CARD_ADDED]: (state, { payload }) => {
       const { columnId, cardId } = payload;
 
       const column = state.entities[columnId];
       column.cards.unshift(cardId);
     },
-    [CARD_CLOSED]: (state, { payload }) => {
+    [actionTypes.CARD_CLOSED]: (state, { payload }) => {
       const { columnId, cardId } = payload;
       const column = state.entities[columnId];
 
       column.cards = column.cards.filter((id) => id !== cardId);
     },
-    [CARD_DELETED]: (state, { payload }) => {
+    [actionTypes.CARD_DELETED]: (state, { payload }) => {
       const { columnId, cardId } = payload;
       const column = state.entities[columnId];
 

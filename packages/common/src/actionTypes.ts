@@ -1,5 +1,6 @@
 export const CREATE_BOARD = 'board/createBoard';
 export const BOARD_CREATED = 'board/boardCreated';
+export const JOIN_BOARD = 'board/joinBoard';
 export const ADD_COLUMN = 'columns/addColumn';
 export const COLUMN_ADDED = 'columns/columnAdded';
 export const DELETE_COLUMN = 'columns/deleteColumn';

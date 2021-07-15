@@ -1,13 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { actionTypes } from '@retro-board/common';
 
 import { addVote, removeVote } from '../cards/cardsSlice';
 import reorder from './helpers/reorder';
-import {
-  BOARD_CREATED,
-  CARD_DELETED,
-  COLUMN_ADDED,
-  COLUMN_DELETED
-} from '../../common/actions';
 
 const initialState = { timer: { minutes: null, seconds: null, isOver: true } };
 
@@ -44,7 +39,7 @@ const boardSlice = createSlice({
     }
   },
   extraReducers: {
-    [BOARD_CREATED]: (state, { payload }) => {
+    [actionTypes.BOARD_CREATED]: (state, { payload }) => {
       const { result } = payload;
       return {
         ...state,
@@ -52,10 +47,10 @@ const boardSlice = createSlice({
         remainingVotes: result.maxVotes
       };
     },
-    [COLUMN_DELETED]: (state, { payload: columnId }) => {
+    [actionTypes.COLUMN_DELETED]: (state, { payload: columnId }) => {
       state.columns = state.columns.filter((id) => id !== columnId);
     },
-    [COLUMN_ADDED]: (state, { payload }) => {
+    [actionTypes.COLUMN_ADDED]: (state, { payload }) => {
       const { id } = payload;
       state.columns.push(id);
     },
@@ -65,7 +60,7 @@ const boardSlice = createSlice({
     [removeVote]: (state) => {
       state.remainingVotes = state.remainingVotes + 1;
     },
-    [CARD_DELETED]: (state, { payload }) => {
+    [actionTypes.CARD_DELETED]: (state, { payload }) => {
       const { votes } = payload;
 
       state.remainingVotes = state.remainingVotes + votes;

@@ -1,5 +1,5 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-import { BOARD_CREATED } from '../../common/actions';
+import { actionTypes } from '@retro-board/common';
 
 const initialState = {
   isModalOpen: false,
@@ -29,7 +29,7 @@ const dashboardSlice = createSlice({
     }
   },
   extraReducers: {
-    [BOARD_CREATED]: (state) => {
+    [actionTypes.BOARD_CREATED]: (state) => {
       state.isModalOpen = false;
     }
   }
