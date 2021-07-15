@@ -1,0 +1,43 @@
+.column-header {
+  font-size: 1rem;
+  text-transform: uppercase;
+
+  &__icons {
+    float: right;
+  }
+
+  &__input-icons {
+    position: absolute;
+    right: 0;
+    top: -0.1rem;
+
+    i:first-child {
+      margin-right: 0;
+    }
+
+    i:last-child {
+      margin-right: 0.2rem;
+    }
+  }
+
+  &__input-box {
+    position: relative;
+    margin-bottom: 0.3rem;
+
+    input {
+      width: 100%;
+      padding: 0.3rem;
+      background-color: #f1f2f5;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    input,
+    input:focus {
+      border: 0.1rem solid #145cf2;
+      border-radius: 0;
+    }
+  }
+}

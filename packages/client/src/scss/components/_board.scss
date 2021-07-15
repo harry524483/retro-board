@@ -1,0 +1,50 @@
+.board {
+  padding: 2rem 0.6rem;
+
+  &__tracking {
+    margin: -0.5rem 0 0.4rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    p {
+      margin: 0 0.5rem;
+    }
+  }
+
+  &__count-down {
+    margin-right: 1rem;
+    font-size: 1.3rem;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      margin: 0;
+      width: 100%;
+    }
+
+    i {
+      cursor: pointer;
+    }
+
+    i:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
+  &__container {
+    display: flex;
+  }
+
+  &__item {
+    flex: 1;
+  }
+
+  &__item:not(:last-child) {
+    margin-right: 1rem;
+  }
+}

@@ -1,0 +1,74 @@
+.card {
+  margin-top: 0.7rem;
+  box-shadow: 0 1.5rem 4rem rgba(#000, 0.2);
+
+  &__tooltip {
+    opacity: 0.9;
+    padding: 0.4rem !important;
+  }
+
+  &__input-box,
+  &__text-box {
+    position: relative;
+  }
+
+  &__input-box {
+    background-color: #fff;
+    border-radius: 0.2rem;
+
+    textarea {
+      border: none;
+    }
+  }
+
+  &__input-icons {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    i:first-child {
+      margin-right: 0;
+    }
+  }
+
+  &__input {
+    padding: 0.3rem 0.5rem 1.8rem 0.3rem;
+    resize: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__text-box {
+    color: #fff;
+  }
+
+  &__text {
+    padding: 0.3rem 0.5rem 1.5rem 0.5rem;
+    line-height: 1.3rem;
+  }
+
+  &__text-icons {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    i {
+      font-size: 0.8rem !important;
+    }
+
+    span {
+      margin: 0 0.4rem 0 -0.1rem;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+  }
+
+  &__input,
+  &__text-box {
+    border-radius: 0.2rem;
+    width: 100%;
+    min-height: 4rem;
+  }
+}

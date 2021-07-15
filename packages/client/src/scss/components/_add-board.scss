@@ -1,0 +1,41 @@
+$primary-color: #c0c0d4;
+$secondary-color: #2185d0;
+
+.add-board {
+  @include vertical-horizontal-center;
+  flex-direction: column;
+  border: 0.15rem dashed $primary-color;
+  height: 100%;
+  border-radius: 3%;
+  cursor: pointer;
+  transition: all 0.4s;
+
+  &__icon {
+    margin-top: 3rem;
+    border-radius: 50%;
+    background-color: $primary-color;
+    color: white;
+  }
+
+  &__icon::before {
+    content: '\002B';
+    @include vertical-horizontal-center;
+    height: 3.75rem;
+    width: 3.75rem;
+    font-size: 1.8rem;
+  }
+
+  &__label {
+    margin: 0.5rem 0 3rem 0;
+    font-size: 0.9rem;
+  }
+
+  &:hover &__icon {
+    background-color: $secondary-color;
+  }
+
+  &:hover {
+    border-color: $secondary-color;
+    transform: scale(1.03);
+  }
+}

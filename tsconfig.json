@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "packages",
+    "paths": {
+      "@retro-board/client/*": ["client/src/*"],
+      "@retro-board/common/*": ["common/src/*"],
+      "@retro-board/server/*": ["server/src/*"]
+    }
+  }
+}

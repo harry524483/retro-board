@@ -1,0 +1,41 @@
+.side-menu {
+  --side-menu-width: 20rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: 2;
+  width: var(--side-menu-width);
+  background-color: #fff;
+  box-shadow: 0 1.5rem 4rem rgba(#000, 0.3);
+  animation: slide-left 0.3s ease-out;
+
+  &__close {
+    float: right;
+    cursor: pointer;
+    margin: 0.4rem 0.1rem;
+  }
+
+  &__form {
+    padding: 1.2rem;
+  }
+
+  &__votes {
+    display: flex;
+
+    input {
+      border: 1px solid #555 !important;
+      margin-right: 0.3rem !important;
+    }
+  }
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(#000, 0.4);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
