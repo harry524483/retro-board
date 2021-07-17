@@ -11,7 +11,8 @@
     "build": "lerna run build --stream",
     "lint": "eslint packages/* --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --config --write .prettierrc '**/*.{js,jsx,ts,tsx}'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "ci:release": "node ops/release"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
