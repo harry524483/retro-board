@@ -1,7 +1,6 @@
 {
   "name": "@retro-board/client",
   "version": "0.1.2",
-  "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
     "@retro-board/common": "^0.1.1",
