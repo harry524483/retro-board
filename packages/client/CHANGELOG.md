@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/harry524483/retro-board/compare/@retro-board/client@0.1.2...@retro-board/client@0.1.3) (2021-07-17)
+
+**Note:** Version bump only for package @retro-board/client
+
+
+
+
+
 ## [0.1.2](/compare/@retro-board/client@0.1.1...@retro-board/client@0.1.2) (2021-07-15)
 
 
