@@ -6,7 +6,7 @@
   "scripts": {
     "precompile": "rm -rf build tsconfig.tsbuildinfo",
     "compile": "tsc --build",
-    "build": "yarn compile && node build/app.js",
+    "build": "yarn compile",
     "start": "nodemon --config nodemon.json src/app.ts"
   },
   "devDependencies": {
