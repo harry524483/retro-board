@@ -40,6 +40,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: yarn --prefer-offline
+      - run: yarn
       - run: yarn --silent lerna changed
       - run: yarn lerna run build --since --stream
