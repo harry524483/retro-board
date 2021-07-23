@@ -37,5 +37,6 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn --frozen-lockfile
+      - run: yarn format && yarn lint
       - run: yarn --silent lerna changed
       - run: yarn lerna run build --since --stream
