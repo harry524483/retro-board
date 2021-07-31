@@ -27,6 +27,11 @@
     "web-vitals": "^1.0.1",
     "yup": "^0.32.9"
   },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.1.8",
+    "@types/react-beautiful-dnd": "^10.1.4",
+    "@types/chart.js": "^2.9.34"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
