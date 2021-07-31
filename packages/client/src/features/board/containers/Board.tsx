@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Loader, Segment } from 'semantic-ui-react';
 
@@ -20,7 +20,10 @@ import { BoardSlice } from '../types';
 
 const Board: FC = () => {
   const [displaySideMenu, setDisplaySideMenu] = useState(false);
-  const [sideMenuRef] = useOnClickOutside(() => setDisplaySideMenu(false));
+  const sideMenuRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside<HTMLDivElement>(sideMenuRef, () =>
+    setDisplaySideMenu(false)
+  );
   const [toggle, setToggle] = useState(true);
   const { id } = useParams<{ id: string }>();
   const board = useSelector(({ board }: GlobalState) => board);

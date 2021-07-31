@@ -21,7 +21,8 @@ const ColumnHeader: FC<Props> = ({
   const [displayInput, setDisplayInput] = useState(false);
   const [name, setName] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  const [columnHeaderRef] = useOnClickOutside<HTMLDivElement>(() =>
+  const columnHeaderRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside<HTMLDivElement>(columnHeaderRef, () =>
     setDisplayInput(false)
   );
 
