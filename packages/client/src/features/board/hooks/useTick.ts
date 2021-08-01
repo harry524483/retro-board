@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-type Props = { minutes: number; seconds: number; onReset: Function };
+export type Props = { minutes: number; seconds: number; onReset: Function };
 
 const useTick = ({ minutes, seconds, onReset }: Props) => {
   const [[min, sec], setTime] = useState([minutes, seconds]);

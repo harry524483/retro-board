@@ -9,12 +9,13 @@ describe('useOnClickOutside', () => {
     // Arrange
     const handler = jest.fn();
     const ref = createRef<HTMLDivElement>();
-    // Act
     render(<div ref={ref}></div>);
-    renderHook(() => useOnClickOutside(ref, handler));
 
+    // Act
+    renderHook(() => useOnClickOutside(ref, handler));
     fireEvent.click(document);
-    //  Assert
+
+    // Assert
     expect(handler).toBeCalledTimes(1);
   });
 
@@ -22,12 +23,12 @@ describe('useOnClickOutside', () => {
     // Arrange
     const handler = jest.fn();
     const ref = createRef<HTMLDivElement>();
-    // Act
-    render(<div ref={ref} data-testid="div"></div>);
-    renderHook(() => useOnClickOutside(ref, handler));
+    render(<div ref={ref} data-testid="element-testid"></div>);
 
-    const div = screen.getByTestId('div');
-    fireEvent.click(div);
+    // Act
+    renderHook(() => useOnClickOutside(ref, handler));
+    fireEvent.click(screen.getByTestId('element-testid'));
+
     //  Assert
     expect(handler).not.toBeCalled();
   });
