@@ -1,7 +1,7 @@
-import { FC, ReactChildren } from 'react';
+import { FC } from 'react';
 import { Label, Header as SemanticHeader, Divider } from 'semantic-ui-react';
 
-type Props = { title: string; children: ReactChildren; label: string };
+export type Props = { title: string; label: string };
 
 const Header: FC<Props> = ({ title, children, label }): JSX.Element => {
   return (

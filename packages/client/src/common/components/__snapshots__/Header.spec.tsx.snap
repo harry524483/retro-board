@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without error 1`] = `
+<DocumentFragment>
+  <h2
+    class="ui header"
+  >
+    foo
+    <div
+      class="ui circular label"
+    >
+      bar
+    </div>
+  </h2>
+  <div
+    class="ui horizontal divider"
+  >
+    <h4
+      class="ui blue header"
+    >
+      I am children
+    </h4>
+  </div>
+</DocumentFragment>
+`;
