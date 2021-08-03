@@ -1,10 +1,9 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import { Button, Icon, Modal as SematicModal } from 'semantic-ui-react';
 
 const { Header, Content } = SematicModal;
 
-type Props = {
-  children: ReactNode;
+export type Props = {
   isOpen: boolean;
   onClose: () => void;
   title: string;
@@ -13,7 +12,7 @@ type Props = {
 const Modal: FC<Props> = ({ children, isOpen, onClose, title }) => {
   return (
     <SematicModal onClose={onClose} open={isOpen} size="tiny" centered={false}>
-      <Header>
+      <Header data-testid="modal-header">
         {title}
         <Button floated="right" icon size="mini" circular onClick={onClose}>
           <Icon name="cancel" />

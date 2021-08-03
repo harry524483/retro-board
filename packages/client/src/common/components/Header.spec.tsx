@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 
 import Header, { Props } from './Header';
 
@@ -6,9 +6,9 @@ describe('Header', () => {
   const children = 'I am children';
   const props: Props = { title: 'foo', label: 'bar' };
 
-  beforeEach(() => {
-    render(<Header {...props}>{children}</Header>);
-  });
+  beforeEach(() => render(<Header {...props}>{children}</Header>));
+
+  afterEach(() => cleanup());
 
   it('renders main header with given title and label', () => {
     expect(screen.getByTestId('main-header')).toHaveTextContent('foo');
