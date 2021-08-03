@@ -1,15 +1,21 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Header, { Props } from './Header';
 
-it('renders without error', () => {
-  // Arrange
+describe('Header', () => {
   const children = 'I am children';
   const props: Props = { title: 'foo', label: 'bar' };
 
-  // Act
-  const { asFragment } = render(<Header {...props}>{children}</Header>);
+  beforeEach(() => {
+    render(<Header {...props}>{children}</Header>);
+  });
 
-  // Assert
-  expect(asFragment()).toMatchSnapshot();
+  it('renders main header with given title and label', () => {
+    expect(screen.getByTestId('main-header')).toHaveTextContent('foo');
+    expect(screen.getByTestId('label')).toHaveTextContent('bar');
+  });
+
+  it('renders divider with given children', () => {
+    expect(screen.getByTestId('divider')).toHaveTextContent(children);
+  });
 });
