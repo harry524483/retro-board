@@ -31,7 +31,8 @@
   "devDependencies": {
     "@types/chart.js": "^2.9.34",
     "@types/react-beautiful-dnd": "^10.1.4",
-    "@types/react-router-dom": "^5.1.8"
+    "@types/react-router-dom": "^5.1.8",
+    "canvas": "^2.8.0"
   },
   "scripts": {
     "start": "react-scripts start",

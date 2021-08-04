@@ -5,7 +5,7 @@ import { colors } from '../constants';
 
 ChartJS.defaults.scale.gridLines.drawOnChartArea = false;
 
-type Props = {
+export type Props = {
   type: string;
   labels: Array<string>;
   data: Array<any>;
@@ -26,41 +26,34 @@ const Chart: FC<Props> = ({
   displayYAxis = false,
   displayXAxis = false
 }) => {
-  const convasElement = useRef<HTMLCanvasElement>(null);
+  const convasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const chartOptions = {
-      legend: {
-        display: displayLegend
+    const chartInstance = new ChartJS(convasRef.current!, {
+      type,
+      data: {
+        labels,
+        datasets: [{ data, backgroundColor: colors }]
       },
-      scales: {
-        yAxes: [
-          {
-            display: displayYAxis,
-            ticks: {
-              beginAtZero: true,
-              precision: 0
+      options: {
+        legend: {
+          display: displayLegend
+        },
+        scales: {
+          yAxes: [
+            {
+              display: displayYAxis,
+              ticks: {
+                beginAtZero: true,
+                precision: 0
+              }
             }
-          }
-        ],
-        xAxes: [{ display: displayXAxis }]
-      },
-      responsive: true
-    };
-
-    const chartData = {
-      labels,
-      datasets: [{ data, backgroundColor: colors }]
-    };
-
-    const chartInstance = new ChartJS(
-      convasElement.current as HTMLCanvasElement,
-      {
-        type,
-        data: chartData,
-        options: chartOptions
+          ],
+          xAxes: [{ display: displayXAxis }]
+        },
+        responsive: true
       }
-    );
+    });
 
     return () => {
       chartInstance.destroy();
@@ -70,7 +63,8 @@ const Chart: FC<Props> = ({
   return (
     <div>
       <canvas
-        ref={convasElement}
+        data-testid="chart-canvas"
+        ref={convasRef}
         style={{ background: backgroundColor }}
         width="100%"
         height={height}
