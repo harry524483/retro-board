@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { Divider, Button, Input } from 'semantic-ui-react';
 
-type Props = { onAddColumn: Function };
+export type Props = { onAddColumn: Function };
 
 const AddColumn: FC<Props> = ({ onAddColumn }): JSX.Element => {
   const [value, setValue] = useState('');
@@ -22,7 +22,7 @@ const AddColumn: FC<Props> = ({ onAddColumn }): JSX.Element => {
   return (
     <div>
       <h4>Add new column</h4>
-      <Divider />
+      <Divider data-testid="divider" />
       <Input
         ref={inputRef}
         placeholder="Column name"
