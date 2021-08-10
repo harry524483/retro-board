@@ -8,7 +8,11 @@ const { Input } = Form;
 
 const initialValues: TimerValues = { minutes: 5, seconds: 0, isOver: false };
 
-type Props = { onStart: Function; onReset: Function; isCountDownOver: boolean };
+export type Props = {
+  onStart: Function;
+  onReset: Function;
+  isCountDownOver: boolean;
+};
 
 const Timer: FC<Props> = ({
   onStart,
@@ -23,6 +27,7 @@ const Timer: FC<Props> = ({
   const renderedInputs = (
     <div className="timer__input-box">
       <Input
+        data-testid="minutes"
         error={errors.minutes}
         label="Min"
         type="number"
@@ -31,6 +36,7 @@ const Timer: FC<Props> = ({
         onChange={handleChange}
       />
       <Input
+        data-testid="seconds"
         error={errors.seconds}
         label="Sec"
         type="number"
@@ -63,7 +69,7 @@ const Timer: FC<Props> = ({
   return (
     <div className="timer">
       <h4>{isCountDownOver ? 'Turn on timer' : 'Timer is running...'}</h4>
-      <Divider className="timer__divider" />
+      <Divider className="timer__divider" data-testid="divider" />
       {isCountDownOver && renderedInputs}
       <div className="timer__cta">
         {isCountDownOver ? renderedStartButton : renderedResetButton}

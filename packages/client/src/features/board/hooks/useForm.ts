@@ -9,10 +9,7 @@ const useForm = <T, R>(initialValues: T, validator: Function) => {
   }, [values, validator]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValues((values) => ({
-      ...values,
-      [event.target.name]: event.target.value
-    }));
+    setValues({ ...values, [event.target.name]: event.target.value });
   };
 
   return { values, errors, handleChange };
