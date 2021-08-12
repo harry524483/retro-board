@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Header, { Props } from './Header';
 
@@ -8,14 +8,17 @@ describe('Header', () => {
 
   beforeEach(() => render(<Header {...props}>{children}</Header>));
 
-  afterEach(() => cleanup());
-
   it('renders main header with given title and label', () => {
-    expect(screen.getByTestId('main-header')).toHaveTextContent('foo');
-    expect(screen.getByTestId('label')).toHaveTextContent('bar');
+    // Assert
+    expect(
+      screen.getByRole('heading', { name: /foo bar/i })
+    ).toBeInTheDocument();
   });
 
-  it('renders divider with given children', () => {
-    expect(screen.getByTestId('divider')).toHaveTextContent(children);
+  it('renders sub header with given children', () => {
+    // Assert
+    expect(
+      screen.getByRole('heading', { name: /i am children/i })
+    ).toBeInTheDocument();
   });
 });

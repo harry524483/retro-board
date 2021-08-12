@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import Modal, { Props } from './Modal';
 
@@ -9,10 +9,8 @@ describe('Modal', () => {
 
   beforeEach(() => render(<Modal {...props}>{children}</Modal>));
 
-  afterEach(() => cleanup());
-
   it('renders with given title', () => {
-    expect(screen.getByTestId('modal-header')).toHaveTextContent('foo');
+    expect(screen.getByText(/foo/i)).toBeInTheDocument();
   });
 
   it('renders cancel button', () => {

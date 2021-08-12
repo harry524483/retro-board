@@ -6,15 +6,11 @@ export type Props = { title: string; label: string };
 const Header: FC<Props> = ({ title, children, label }): JSX.Element => {
   return (
     <>
-      <SemanticHeader as="h2" data-testid="main-header">
+      <SemanticHeader as="h2">
         {title}
-        {label && (
-          <Label circular data-testid="label">
-            {label}
-          </Label>
-        )}
+        {label && <Label circular>{label}</Label>}
       </SemanticHeader>
-      <Divider horizontal data-testid="divider">
+      <Divider horizontal>
         <SemanticHeader as="h4" color="blue">
           {children}
         </SemanticHeader>

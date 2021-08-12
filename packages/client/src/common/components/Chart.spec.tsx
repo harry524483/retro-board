@@ -1,10 +1,8 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Chart, { Props } from './Chart';
 
 describe('Chart', () => {
-  afterEach(() => cleanup());
-
   it('renders without error', () => {
     // Arrange
     const props: Props = {

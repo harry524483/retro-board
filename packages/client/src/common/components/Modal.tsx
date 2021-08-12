@@ -12,7 +12,7 @@ export type Props = {
 const Modal: FC<Props> = ({ children, isOpen, onClose, title }) => {
   return (
     <SematicModal onClose={onClose} open={isOpen} size="tiny" centered={false}>
-      <Header data-testid="modal-header">
+      <Header>
         {title}
         <Button floated="right" icon size="mini" circular onClick={onClose}>
           <Icon name="cancel" />

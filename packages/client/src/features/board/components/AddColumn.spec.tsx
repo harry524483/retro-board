@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import AddColumn, { Props } from './AddColumn';
 
@@ -7,10 +7,10 @@ describe('AddColumn', () => {
 
   beforeEach(() => render(<AddColumn {...props} />));
 
-  afterEach(() => cleanup());
-
   it('renders header element', () => {
-    expect(screen.getByRole('heading').textContent).toBe('Add new column');
+    expect(
+      screen.getByRole('heading', { name: /add new column/i })
+    ).toBeInTheDocument();
   });
 
   it('renders divider component', () => {
@@ -18,18 +18,16 @@ describe('AddColumn', () => {
   });
 
   it('renders input element', () => {
-    expect(screen.getByPlaceholderText('Column name')).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
 
   it('renders button element', () => {
-    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /add/i })).toBeInTheDocument();
   });
 
   it('sets focus on input element on initial render', () => {
     //Act
-    const inputElement = screen.getByPlaceholderText(
-      'Column name'
-    ) as HTMLInputElement;
+    const inputElement = screen.getByRole('textbox');
 
     // Assert
     expect(inputElement).toHaveFocus();
@@ -37,9 +35,8 @@ describe('AddColumn', () => {
 
   it('updates value in input element on change event', () => {
     //Act
-    const inputElement = screen.getByPlaceholderText(
-      'Column name'
-    ) as HTMLInputElement;
+    const inputElement = screen.getByRole('textbox') as HTMLInputElement;
+
     fireEvent.change(inputElement, { target: { value: 'foo' } });
 
     // Assert
@@ -48,7 +45,8 @@ describe('AddColumn', () => {
 
   it('does not call onAddColumn when input value is empty and button is clicked', () => {
     //Act
-    const buttonElement = screen.getByRole('button');
+    const buttonElement = screen.getByRole('button', { name: /add/i });
+
     fireEvent.click(buttonElement);
 
     // Assert
@@ -57,10 +55,10 @@ describe('AddColumn', () => {
 
   it('calls onAddColumn when input is provided and Add button is clicked', () => {
     // Act
-    const inputElement = screen.getByPlaceholderText('Column name');
-    fireEvent.change(inputElement, { target: { value: 'foo' } });
+    const inputElement = screen.getByRole('textbox');
+    const buttonElement = screen.getByRole('button', { name: /add/i });
 
-    const buttonElement = screen.getByRole('button');
+    fireEvent.change(inputElement, { target: { value: 'foo' } });
     fireEvent.click(buttonElement);
 
     // Assert
@@ -69,9 +67,11 @@ describe('AddColumn', () => {
 
   it('calls onAddColumn when input is provided and enter key is pressed', () => {
     // Act
-    const inputElement = screen.getByPlaceholderText('Column name');
+    const inputElement = screen.getByRole('textbox');
+    const formElement = screen.getByTestId('form');
+
     fireEvent.change(inputElement, { target: { value: 'foo' } });
-    fireEvent.keyPress(inputElement, { key: 'Enter', keyCode: 13 });
+    fireEvent.submit(formElement);
 
     // Assert
     expect(props.onAddColumn).toHaveBeenCalledTimes(1);

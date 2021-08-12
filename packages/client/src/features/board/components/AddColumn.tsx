@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState, FormEvent, MouseEvent } from 'react';
 import { Divider, Button, Input } from 'semantic-ui-react';
 
 export type Props = { onAddColumn: Function };
@@ -13,14 +13,16 @@ const AddColumn: FC<Props> = ({ onAddColumn }): JSX.Element => {
     }
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: MouseEvent | FormEvent) => {
+    event.preventDefault();
+
     if (value) {
       onAddColumn(value);
     }
   };
 
   return (
-    <div>
+    <form onSubmit={handleSubmit} data-testid="form">
       <h4>Add new column</h4>
       <Divider data-testid="divider" />
       <Input
@@ -28,9 +30,6 @@ const AddColumn: FC<Props> = ({ onAddColumn }): JSX.Element => {
         placeholder="Column name"
         value={value}
         onChange={(event) => setValue(event.target.value)}
-        onKeyPress={(event: KeyboardEvent) =>
-          event.key === 'Enter' && handleSubmit()
-        }
       />
       <Button
         color="facebook"
@@ -40,7 +39,7 @@ const AddColumn: FC<Props> = ({ onAddColumn }): JSX.Element => {
       >
         Add
       </Button>
-    </div>
+    </form>
   );
 };
 
