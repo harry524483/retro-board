@@ -41,3 +41,4 @@ jobs:
       - run: yarn --silent lerna changed
       - run: yarn lerna run --scope=@retro-board/common build
       - run: yarn lerna run build --since --stream
+      - run: yarn lerna run test --since --stream

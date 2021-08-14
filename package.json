@@ -9,6 +9,7 @@
   "scripts": {
     "start": "lerna run start --stream",
     "build": "lerna run build --stream",
+    "test": "lerna run test --stream",
     "lint": "eslint packages/* --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --config --write .prettierrc '**/*.{js,jsx,ts,tsx}'",
     "prepare": "husky install",
