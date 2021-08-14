@@ -4,7 +4,7 @@ import { Options } from '@retro-board/common';
 
 const { Field } = Form;
 
-type Props = {
+export type Props = {
   innerRef: any;
   hideCards: Options;
   disableVoting: Options;
@@ -48,7 +48,12 @@ const SideMenu: FC<Props> = ({
       <div className="overlay"></div>
       <div className="side-menu" ref={innerRef}>
         <div className="side-menu__close">
-          <Icon name="close" size="large" onClick={onClose} />
+          <Icon
+            data-testid="sm-close-icon"
+            name="close"
+            size="large"
+            onClick={onClose}
+          />
         </div>
         <div className="side-menu__form">
           <h3>Retro controls</h3>
@@ -59,13 +64,19 @@ const SideMenu: FC<Props> = ({
               <label>Max votes</label>
               <div className="side-menu__votes">
                 <input disabled value={maxVotes} />
-                <Button icon color="facebook" onClick={onIncrementVote}>
+                <Button
+                  icon
+                  color="facebook"
+                  onClick={onIncrementVote}
+                  data-testid="plus-button"
+                >
                   <Icon name="plus" />
                 </Button>
                 <Button
                   icon
                   color="facebook"
                   onClick={() => maxVotes > 1 && onDecrementVote()}
+                  data-testid="minus-button"
                 >
                   <Icon name="minus" />
                 </Button>

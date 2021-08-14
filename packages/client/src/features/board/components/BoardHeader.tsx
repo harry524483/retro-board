@@ -6,7 +6,7 @@ import AddColumn from './AddColumn';
 import Timer from './Timer';
 import TimerCountDown from './TimerCountDown';
 
-type Props = {
+export type Props = {
   name: string | undefined;
   timer: TimerValues;
   onResetTimer: Function;
@@ -32,6 +32,7 @@ const BoardHeader: FC<Props> = ({
         <h2>{name}</h2>
         {!timer.isOver && (
           <TimerCountDown
+            data-testid="count-down"
             className="board__count-down"
             minutes={timer.minutes}
             seconds={timer.seconds}
@@ -39,9 +40,10 @@ const BoardHeader: FC<Props> = ({
           />
         )}
         <Popup
-          trigger={<Icon name="time" size="big" />}
+          trigger={<Icon name="time" size="big" data-testid="timer-icon" />}
           content={
             <Timer
+              data-testid="timer"
               onStart={(minutes: number, seconds: number) => {
                 onStartTimer(minutes, seconds);
                 setDisplayTimer(false);
@@ -59,9 +61,12 @@ const BoardHeader: FC<Props> = ({
           onOpen={() => setDisplayTimer(true)}
         />
         <Popup
-          trigger={<Icon name="add circle" size="big" />}
+          trigger={
+            <Icon name="add circle" size="big" data-testid="add-column-icon" />
+          }
           content={
             <AddColumn
+              data-testid="add-column"
               onAddColumn={(value: string) => {
                 onAddColumn(value);
                 setDisplayAddColumn(false);
@@ -74,6 +79,7 @@ const BoardHeader: FC<Props> = ({
           onOpen={() => setDisplayAddColumn(true)}
         />
         <Icon
+          data-testid="setting-icon"
           name="setting"
           size="big"
           onClick={() => onDisplaySideMenu(true)}

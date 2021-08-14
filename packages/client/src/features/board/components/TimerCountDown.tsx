@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import useTick from '../hooks/useTick';
 
-type Props = {
+export type Props = {
   className: string;
   minutes: number;
   seconds: number;

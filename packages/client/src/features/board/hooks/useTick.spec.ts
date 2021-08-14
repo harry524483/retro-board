@@ -11,7 +11,10 @@ describe('useTick', () => {
 
     // Act
     const { result } = renderHook(() => useTick(props));
-    act(() => jest.advanceTimersByTime(1000));
+
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
 
     // Assert
     expect(result.current).toEqual({ min: 1, sec: 59 });
@@ -24,7 +27,9 @@ describe('useTick', () => {
 
     // Act
     const { result } = renderHook(() => useTick(props));
-    act(() => jest.advanceTimersByTime(1000));
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
 
     // Assert
     expect(result.current).toEqual({ min: 0, sec: 3 });
@@ -37,7 +42,9 @@ describe('useTick', () => {
 
     // Act
     const { result } = renderHook(() => useTick(props));
-    act(() => jest.advanceTimersByTime(1000));
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
 
     // Assert
     expect(result.current).toEqual({ min: 0, sec: 0 });

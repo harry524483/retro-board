@@ -3,7 +3,7 @@ import { Divider, Button, Input } from 'semantic-ui-react';
 
 export type Props = { onAddColumn: Function };
 
-const AddColumn: FC<Props> = ({ onAddColumn }): JSX.Element => {
+const AddColumn: FC<Props> = ({ onAddColumn, ...props }): JSX.Element => {
   const [value, setValue] = useState('');
   const inputRef = useRef<Input>(null);
 
@@ -22,7 +22,7 @@ const AddColumn: FC<Props> = ({ onAddColumn }): JSX.Element => {
   };
 
   return (
-    <form onSubmit={handleSubmit} data-testid="form">
+    <form onSubmit={handleSubmit} data-testid="form" {...props}>
       <h4>Add new column</h4>
       <Divider data-testid="divider" />
       <Input

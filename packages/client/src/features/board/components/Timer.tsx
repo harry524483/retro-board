@@ -17,7 +17,8 @@ export type Props = {
 const Timer: FC<Props> = ({
   onStart,
   onReset,
-  isCountDownOver
+  isCountDownOver,
+  ...props
 }): JSX.Element => {
   const { values, errors, handleChange } = useForm<TimerValues, TimerErrors>(
     initialValues,
@@ -67,7 +68,7 @@ const Timer: FC<Props> = ({
   );
 
   return (
-    <div className="timer">
+    <div className="timer" {...props}>
       <h4>{isCountDownOver ? 'Turn on timer' : 'Timer is running...'}</h4>
       <Divider className="timer__divider" data-testid="divider" />
       {isCountDownOver && renderedInputs}
