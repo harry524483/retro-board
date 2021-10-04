@@ -22,3 +22,9 @@ export type GlobalState = {
   columns: EntityState<NormalizedColumn>;
   cards: EntityState<Card>;
 };
+
+export type RenderOptions = {
+  route?: string;
+  path?: string;
+  history?: any;
+};

@@ -7,19 +7,26 @@ import cardsReducer from './features/cards/cardsSlice';
 import columnsReducer from './features/columns/columnsSlice';
 import rootSaga from './rootSaga';
 
-const sagaMiddleware = createSagaMiddleware();
-const middleware = [...getDefaultMiddleware({ thunk: false }), sagaMiddleware];
+const createStore = () => {
+  const sagaMiddleware = createSagaMiddleware();
+  const middleware = [
+    ...getDefaultMiddleware({ thunk: false }),
+    sagaMiddleware
+  ];
 
-const store = configureStore({
-  reducer: {
-    dashboard: dashboardReducer,
-    board: boardReducer,
-    cards: cardsReducer,
-    columns: columnsReducer
-  },
-  middleware
-});
+  const store = configureStore({
+    reducer: {
+      dashboard: dashboardReducer,
+      board: boardReducer,
+      cards: cardsReducer,
+      columns: columnsReducer
+    },
+    middleware
+  });
 
-sagaMiddleware.run(rootSaga as Saga);
+  sagaMiddleware.run(rootSaga as Saga);
 
-export default store;
+  return store;
+};
+
+export default createStore;

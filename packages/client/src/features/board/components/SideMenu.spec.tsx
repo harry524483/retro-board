@@ -59,7 +59,7 @@ describe('SideMenu', () => {
       `when %s checkbox is clicked`,
       (name: string) => {
         // Act
-        fireEvent.click(getCheckboxByName(`${name}.checked`));
+        fireEvent.click(getCheckboxByName(`${name}.checked`)!);
 
         // Assert
         expect(props.onOptionChange).toBeCalledWith(name);

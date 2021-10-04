@@ -55,6 +55,7 @@ const Board: FC = () => {
     <div className="board">
       {displaySideMenu && (
         <SideMenu
+          data-testid="side-menu"
           innerRef={sideMenuRef}
           hideCards={board.hideCards!}
           disableVoting={board.disableVoting!}

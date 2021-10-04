@@ -14,6 +14,7 @@ export type Props = {
   onOptionChange: Function;
   onIncrementVote: () => void;
   onDecrementVote: Function;
+  'data-testid'?: string;
 };
 
 const SideMenu: FC<Props> = ({
@@ -25,7 +26,8 @@ const SideMenu: FC<Props> = ({
   onClose,
   onOptionChange,
   onIncrementVote,
-  onDecrementVote
+  onDecrementVote,
+  'data-testid': dataTestId
 }): JSX.Element => {
   const renderedOptions = () => {
     const options = { hideCards, disableVoting, hideCount };
@@ -44,7 +46,7 @@ const SideMenu: FC<Props> = ({
   };
 
   return (
-    <>
+    <div data-testid={dataTestId}>
       <div className="overlay"></div>
       <div className="side-menu" ref={innerRef}>
         <div className="side-menu__close">
@@ -85,7 +87,7 @@ const SideMenu: FC<Props> = ({
           </Form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

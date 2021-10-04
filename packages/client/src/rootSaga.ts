@@ -1,8 +1,6 @@
-/* eslint-disable require-yield */
 import { fork, call, actionChannel } from 'redux-saga/effects';
-import io from 'socket.io-client';
+import io, { Socket } from 'socket.io-client';
 import { actionTypes } from '@retro-board/common';
-import { Socket } from 'socket.io-client';
 import { TakeableChannel } from 'redux-saga';
 
 import createBoard from './features/board/sagas/createBoard';
@@ -22,7 +20,6 @@ const connect = (): Promise<Socket> => {
   return new Promise((resolve) => {
     socket.on('connect', () => {
       resolve(socket);
-      console.log('Socket connected');
     });
   });
 };

@@ -8,7 +8,7 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": ["master", "main", "feature/*"],
+      "allowBranch": ["master", "main", "feature/*", "testing"],
       "message": "chore(release): publish"
     }
   }
